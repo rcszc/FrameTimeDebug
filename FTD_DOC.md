@@ -9,7 +9,7 @@ Update(Version): 20240818.0503
 
 __捕获类使用:__
 ```cpp
-namespace FTDcapture
+#include "psag_ft_debug.hpp"
 ```
 ```cpp
 #if ENABLE_DEBUG_MODE
@@ -33,6 +33,11 @@ namespace FTDcapture
 ```
 
 __捕获全局更新:__
+
+- .ftbf (二进制) 帧数据文件
+- .ftbp (二进制) 采样点数据文件
+- .ftbt (文本) 文本注释文件
+
 ```cpp
 // 创建处理线程(全局), 输入文件夹路径和文件名, 会自动在目录下创建3个数据文件.
 FTDthread::FTDprocessingThread.CreateProcessingThread("../", "TEST");
@@ -51,6 +56,9 @@ FTDthread::FTDprocessingThread.DeleteProcessingThread();
 编辑器使用ImGui核心UI编写, 进行收集完成后的数据显示, 写的比较简陋, 数据量非常大时会加载缓慢已经卡顿.
 
 __加载数据&绘制编辑器:__
+```cpp
+#include "psag_ft_debug_view.h"
+```
 ```cpp
 FTDViewLoader::DataFilesLoader* TestLoader = nullptr; // 文件加载器.
 FTDViewEditor::DebugViewEditor* TestEditor = nullptr; // 编辑器.
@@ -79,7 +87,7 @@ FTDViewEditor::DebugViewEditor* TestEditor = nullptr; // 编辑器.
 
 // 结束销毁
 {
-    // 注意销毁顺序.
+    // 主要销毁顺序.
     delete TestEditor; TestEditor = nullptr;
     delete TestLoader; TestLoader = nullptr;
 }
