@@ -79,7 +79,7 @@ FTDViewEditor::DebugViewEditor* TestEditor = nullptr; // 编辑器.
 
 // 结束销毁
 {
-    // 主要销毁顺序.
+    // 注意销毁顺序.
     delete TestEditor; TestEditor = nullptr;
     delete TestLoader; TestLoader = nullptr;
 }
